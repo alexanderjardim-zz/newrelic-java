@@ -28,7 +28,7 @@ Example Playbook
 
     - hosts: all
       roles:
-         - { role: jeysonmaia.newrelic, newrelic_license_key: 'qwroibwvioqygvqe' }
+         - { role: alexanderjardim.newrelic-java-agent, newrelic_license_key: 'qwroibwvioqygvqe' }
 
 License
 -------
