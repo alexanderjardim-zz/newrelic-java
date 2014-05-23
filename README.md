@@ -1,31 +1,34 @@
-Role Name
-========
+newrelic-java
+=============
 
-A brief description of the role goes here.
+Ansible role for deploy New Relic Java agent
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+You need a working java container.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+- **newrelic_license_key**: your New Relic license key 
+- **newrelic_dir**: New Relic agent installation directory. Defaults to '/home/vagrant/newrelic'
+- **newrelic_download_dir**: where your control machine will download New Relic. Defaults to '~/Downloads'
+- **newrelic_version**: New Relic version that will be installed. Defaults to '3.7.0'
+- **newrelic_container**: Which java container will you use? Defaults to 'tomcat'. This is the only one supported right now. If you to use with another contaner, you will have to do the '-javaagent' setup by yourself.
+- **newrelic_download_url**: Where will you get New Relic package from? Defaults to *https://oss.sonatype.org/content/repositories/releases/com/newrelic/agent/java/newrelic-java/{{newrelic_version}}/newrelic-java-{{newrelic_version}}.zip*. Thanks sonatype.org :-D
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+none
 
 Example Playbook
 -------------------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: all
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: jeysonmaia.newrelic, newrelic_license_key: 'qwroibwvioqygvqe' }
 
 License
 -------
@@ -35,4 +38,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+alexander.ramos.jardim+newrelic-java@gmail.com
