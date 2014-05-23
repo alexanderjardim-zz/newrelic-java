@@ -1,0 +1,40 @@
+---
+
+newrelic_download_dir: '~/Downloads'
+newrelic_version: '3.7.0'
+newrelic_container: 'tomcat'
+newrelic_package: 'newrelic-java-{{newrelic_version}}.zip'
+newrelic_download_url: "https://oss.sonatype.org/content/repositories/releases/com/newrelic/agent/java/newrelic-java/{{newrelic_version}}/{{newrelic_package}}"
+#newrelic_license_key: 
+newrelic_installation_dir: '/home/vagrant/newrelic'
+newrelic_agent_enabled: true
+newrelic_app_name: "My Application"
+newrelic_enable_auto_app_naming: false
+newrelic_enbale_auto_transaction_naming: true
+newrelic_log_level: info
+newrelic_audit_mode: false
+newrelic_log_file_count: 1
+newrelic_log_limit_in_kbytes: 0
+newrelic_log_daily: false
+newrelic_log_file_name: 'newrelic_agent.log'
+newrelic_log_file_path: '{{newrelic_installation_dir}}'
+newrelic_ssl: true
+#newrelic_proxy_host:
+#newrelic_proxy_port:
+#newrelic_proxy_user:
+#newrelic_proxy_password:
+newrelic_max_stack_trace_lines: 30
+newrelic_capture_params: false
+#newrelic_ignored_params:
+newrelic_capture_messaging_params: false
+#newrelic_ignored_messaging_params:
+newrelic_transaction_threshold: 'apdex_f'
+newrelic_record_sql: 'obfuscated'
+newrelic_log_sql: false
+newrelic_stack_trace_threshold: 0.5
+newrelic_explain_enabled: true
+newrelic_explain_threshold: 0.5
+newrelic_top_n: 20
+newrelic_ignore_errors: 'akka.actor.ActorKilledException'
+newrelic_ignore_status_codes: 404
+newrelic_max_samples_stored: 2000

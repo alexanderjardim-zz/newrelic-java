@@ -1,0 +1,34 @@
+---
+
+- name: ensures New Relic package is present at control machine
+  local_action: >
+    get_url 
+      url="{{newrelic_download_url}}"
+      dest="{{newrelic_download_dir}}/{{newrelic_package}}"
+
+- name: ensures New Relic folder exists
+  file:
+    path="{{newrelic_installation_dir}}/{{newrelic_version}}"
+    state=directory
+    mode=0755
+
+- name: unpack New Relic
+  unarchive:
+    src="{{newrelic_download_dir}}/{{newrelic_package}}"
+    dest="{{newrelic_installation_dir}}/{{newrelic_version}}"
+    creates="{{newrelic_installation_dir}}/{{newrelic_version}}/newrelic.jar"
+  tags: unpack
+
+- name: moves New Relic content to its rightfull place
+  shell:
+    mv newrelic/* ./; rm -rf newrelic
+    chdir="{{newrelic_installation_dir}}/{{newrelic_version}}"
+    creates="{{newrelic_installation_dir}}/{{newrelic_version}}/newrelic.jar"
+
+- name: configures newrelic.yml
+  template:
+    src="newrelic.yml.j2"
+    dest="{{newrelic_installation_dir}}/{{newrelic_version}}/newrelic.yml"
+
+- include: tomcat.yml
+  when: newrelic_container == 'tomcat'
